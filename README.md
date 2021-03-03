@@ -3,5 +3,5 @@
 Запустите:
 
 ```shell script
-node runTests.js
+node [файл который необходимо запустить]
 ```
