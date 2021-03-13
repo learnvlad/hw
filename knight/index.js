@@ -1,3 +1,5 @@
+const { runTests } = require('./runTests')
+
 function popcnt(bits) {
   let cnt = 0n
   while (bits > 0n) {
@@ -8,7 +10,9 @@ function popcnt(bits) {
   return cnt
 }
 
-function getPos(x) {
+function getPos(n) {
+
+  const x = BigInt(n)
 
   const K = 1n << x
   const noA = 0xFeFeFeFeFeFeFeFen
@@ -23,11 +27,9 @@ function getPos(x) {
 
   const M = (Kab << 6n) | (Kab >> 10n) | (Ka << 15n) | (Ka >> 17n) | (Kh << 17n) | (Kh >> 15n) | (Kgh << 10n) | (Kgh >> 6n)
 
-  return BigInt.asUintN(64, M)
+  const result = BigInt.asUintN(64, M)
+
+  return (popcnt(result).toString() + '\r\n' + result.toString()).trim()
 }
 
-const n = 36n
-
-console.log(getPos(n))
-
-console.log(popcnt(getPos(n)))
+runTests(getPos)

@@ -32,10 +32,15 @@ function getPos(n) {
   const noH = 0x7f7f7f7f7f7f7f7fn
 
   const M =
+    (K << 8n) | (K << 16n) | (K << 24n) | (K << 32n) | (K << 40n) | (K << 48n) | (K << 56n) |
+    (K >> 8n) | (K >> 16n) | (K >> 24n) | (K >> 32n) | (K >> 40n) | (K >> 48n) | (K >> 56n) |
     ((K << 1n) & noA) | ((K << 2n) & noAB) | ((K << 3n) & noABC) | ((K << 4n) & noABCD) | ((K << 5n) & noABCDE) | ((K << 6n) & noABCDEF) | ((K << 7n) & noABCDEFG) |
     ((K >> 1n) & noH) | ((K >> 2n) & noGH) | ((K >> 3n) & noFGH) | ((K >> 4n) & noEFGH) | ((K >> 5n) & noDEFGH) | ((K >> 6n) & noCDEFGH) | ((K >> 7n) & noBCDEFGH) |
-    (K << 8n) | (K << 16n) | (K << 24n) | (K << 32n) | (K << 40n) | (K << 48n) | (K << 56n) |
-    (K >> 8n) | (K >> 16n) | (K >> 24n) | (K >> 32n) | (K >> 40n) | (K >> 48n) | (K >> 56n)
+
+    ((K << 9n) & noA) | ((K << 18n) & noAB) | ((K << 27n) & noABC) | ((K << 36n) & noABCD) | ((K << 45n) & noABCDE) | ((K << 54n) & noABCDEF) | (K << 63n) |
+    ((K >> 9n) & noH) | ((K >> 18n) & noGH) | ((K >> 27n) & noFGH) | ((K >> 36n) & noEFGH) | ((K >> 45n) & noDEFGH) | ((K >> 54n) & noCDEFGH) | (K >> 63n) |
+    ((K << 7n) & noH) | ((K << 14n) & noGH) | ((K << 21n) & noFGH) | ((K << 28n) & noEFGH) | ((K << 35n) & noDEFGH) | ((K << 42n) & noCDEFGH) | ((K << 49n) & noBCDEFGH) |
+    ((K >> 7n) & noA) | ((K >> 14n) & noAB) | ((K >> 21n) & noABC) | ((K >> 28n) & noABCD) | ((K >> 35n) & noABCDE) | ((K >> 42n) & noABCDEF) | ((K >> 49n) & noABCDEFG)
 
   const result =  BigInt.asUintN(64, M)
 
